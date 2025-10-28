@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Admin - Tokens</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <style>
+      .container {
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 90%;
+}
+.button {
+    width: 5%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+    table { width:100%; border-collapse: collapse; }
+    th, td { padding:8px; border:1px solid #ddd; text-align:left; }
+    .revoked { color: #c00; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Token Admin Panel</h2>
+    <form method="get" action="/admin/tokens">
+      <input name="user" placeholder="Filter by username/email/id">
+      <button type="submit" class="button">Filter</button>
+    </form>
+
+    <table>
+      <thead>
+        <tr><th>ID</th><th>User</th><th>JTI</th><th>Type</th><th>Expires At</th><th>Revoked</th><th>Action</th></tr>
+      </thead>
+      <tbody>
+        {% for t in tokens %}
+        <tr>
+          <td>{{ t.id }}</td>
+          <td>{{ t.user.username }} ({{ t.user_id }})</td>
+          <td style="font-family:monospace">{{ t.jti }}</td>
+          <td>{{ t.token_type }}</td>
+          <td>{{ t.expires_at }}</td>
+          <td class="{{ 'revoked' if t.revoked else '' }}">{{ t.revoked }}</td>
+          <td>
+            {% if not t.revoked %}
+            <form action="/admin/revoke" method="post" style="display:inline">
+              <input type="hidden" name="token_jti" value="{{ t.jti }}">
+              <button type="submit">Revoke</button>
+            </form>
+            {% else %}
+            -
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+        <form action="/protected" method="post">
+      <button type="submit" class="button">← Back</button>
+    </form>
+<!--    <p><a href="/protected">Back</a></p>-->
+  </div>
+</body>
+</html>

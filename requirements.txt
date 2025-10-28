@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+jinja2
+sqlalchemy
+passlib[bcrypt]
+python-jose[cryptography]
+gunicorn
+psycopg2
+python-multipart
+argon2-cffi
