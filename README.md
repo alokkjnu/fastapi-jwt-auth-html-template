@@ -48,7 +48,7 @@ You can use the Python script gen_key.py to generate the keys automatically.
 
 Create a PostgreSQL database named authdb and configure the connection string with your PostgreSQL user and password:
  ```bash
-    CREATE DATABASE authdb;
+    CREATE DATABASE authdb
 
 
 - Make sure to edit the database connection string in the project accordingly.
