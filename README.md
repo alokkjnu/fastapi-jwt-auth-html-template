@@ -51,7 +51,7 @@ Create a PostgreSQL database named authdb and configure the connection string wi
     CREATE DATABASE authdb;
 
 
-Make sure to edit the database connection string in the project accordingly.
+- Make sure to edit the database connection string in the project accordingly.
 
 5. Run the Application
 
@@ -60,7 +60,7 @@ To run the FastAPI application with live reloading, use the following command:
     uvicorn main:app --reload
 
 
-The application should now be running locally, and you can access it at http://localhost:8000.
+- The application should now be running locally, and you can access it at http://localhost:8000.
 
 Additional Notes
 
