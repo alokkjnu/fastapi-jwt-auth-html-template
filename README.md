@@ -13,8 +13,9 @@ You can create a virtual environment using one of the following commands:
   virtualenv env --python=python3
 
 
-# Using venv (Python 3+):
-python3 -m venv env
+- Using venv (Python 3+):
+    ```bash
+    python3 -m venv env
 
 
 2. Install Required Dependencies
@@ -28,26 +29,26 @@ To securely sign JWTs, you need a pair of private and public RSA keys.
 
 You can use the Python script gen_key.py to generate the keys automatically.
 
-Alternatively, use the following OpenSSL commands to manually generate the keys:
+- Alternatively, use the following OpenSSL commands to manually generate the keys:
 
-RSA (Recommended: 2048 or 4096 bits)
+- RSA (Recommended: 2048 or 4096 bits)
 
-Generate a 2048-bit private key:
+- Generate a 2048-bit private key:
+    ```bash
+    openssl genpkey -algorithm RSA -out private.pem -pkeyopt rsa_keygen_bits:2048
 
-openssl genpkey -algorithm RSA -out private.pem -pkeyopt rsa_keygen_bits:2048
 
+- Extract the public key:
+    ```bash
+    openssl rsa -pubout -in private.pem -out public.pem
 
-Extract the public key:
-
-openssl rsa -pubout -in private.pem -out public.pem
-
-Make sure to store the private.pem and public.pem files securely.
+- Make sure to store the private.pem and public.pem files securely.
 
 4. Create PostgreSQL Database
 
 Create a PostgreSQL database named authdb and configure the connection string with your PostgreSQL user and password:
-
-CREATE DATABASE authdb;
+ ```bash
+    CREATE DATABASE authdb;
 
 
 Make sure to edit the database connection string in the project accordingly.
@@ -55,8 +56,8 @@ Make sure to edit the database connection string in the project accordingly.
 5. Run the Application
 
 To run the FastAPI application with live reloading, use the following command:
-
-uvicorn main:app --reload
+    ```bash
+    uvicorn main:app --reload
 
 
 The application should now be running locally, and you can access it at http://localhost:8000.
@@ -68,3 +69,4 @@ Ensure that your PostgreSQL instance is running and accessible.
 You can customize the JWT authentication logic to suit your project needs.
 
 The HTML templates can be modified to fit your front-end requirements.
+
